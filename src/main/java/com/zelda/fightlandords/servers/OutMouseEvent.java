@@ -34,18 +34,18 @@ public class OutMouseEvent implements MouseListener{
 	}
 	public void mouseClicked(MouseEvent e) {
 		int size=choose.size();
-		System.out.println("µã»÷ÁË³öÅÆ°´Å¥        ÅÆÊı£º"+size);
-		//Íæ¼Òµã»÷ÁË³öÅÆ°´Å¥  ÅĞ¶ÏchooseÊÇ·ñÓĞÖµ£»ÅĞ¶ÏÊÇ·ñ·ûºÏ³öÅÆ±ê×¼£»ÅĞ¶ÏÊÇ·ñ·ûºÏÉÏÒ»¼Ò³öÅÆ±ê×¼£»ÅĞ¶ÏÊÇ·ñ´ó¹ıÉÏ¼Ò£»¸ù¾İchooseÇå³ıJLabel;Çå¿Õchoose£»·¢ËÍĞÅÏ¢ÖÁ·şÎñÆ÷
+		System.out.println("ç‚¹å‡»äº†å‡ºç‰ŒæŒ‰é’®        ç‰Œæ•°ï¼š"+size);
+		//ç©å®¶ç‚¹å‡»äº†å‡ºç‰ŒæŒ‰é’®  åˆ¤æ–­chooseæ˜¯å¦æœ‰å€¼ï¼›åˆ¤æ–­æ˜¯å¦ç¬¦åˆå‡ºç‰Œæ ‡å‡†ï¼›åˆ¤æ–­æ˜¯å¦ç¬¦åˆä¸Šä¸€å®¶å‡ºç‰Œæ ‡å‡†ï¼›åˆ¤æ–­æ˜¯å¦å¤§è¿‡ä¸Šå®¶ï¼›æ ¹æ®chooseæ¸…é™¤JLabel;æ¸…ç©ºchooseï¼›å‘é€ä¿¡æ¯è‡³æœåŠ¡å™¨
 		if(choose!=null&&choose.size()>0){
 			String s=IsTruePoker.isTruePoker(JLabelToPoker.toPokerList(choose));
 			System.out.println(s);
-			//µ±s£¡=ERROR ËµÃ÷Âú×ãÓÎÏ·¹æÔò
-			//ĞèÒªÔÙÅĞ¶ÏÊÇ·ñ±ÈÉÏ¼Ò³öÅÆ´ó »òÕß ÊÇ·ñ×Ô¼ºÏÈ³ö
+			//å½“sï¼=ERROR è¯´æ˜æ»¡è¶³æ¸¸æˆè§„åˆ™
+			//éœ€è¦å†åˆ¤æ–­æ˜¯å¦æ¯”ä¸Šå®¶å‡ºç‰Œå¤§ æˆ–è€… æ˜¯å¦è‡ªå·±å…ˆå‡º
 			if(!s.equals(IsTruePoker.ERROR)){
 				List<Poker> list=JLabelToPoker.toPokerList(choose);
-				System.out.println("ÉÏ¼ÒµÄÅÆ: "+MainFrame.leftmsg.getList());
+				System.out.println("ä¸Šå®¶çš„ç‰Œ: "+MainFrame.leftmsg.getList());
 				if(IsBigger.isBigger(MainFrame.leftmsg.getList(),MainFrame.rightmsg.getList(), list)){
-					System.out.println("ÔÊĞí³öÅÆ");
+					System.out.println("å…è®¸å‡ºç‰Œ");
 					System.out.println(JSON.toJSONString(new Msg(MainFrame.myId,list)));
 					Connect.sendMes.setMsg(JSON.toJSONString(new Msg(MainFrame.myId,list)));
 					

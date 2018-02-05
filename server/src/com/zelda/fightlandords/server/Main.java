@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class Main {
 	public static int flag=0;
-	public static final int PORT = 8866;//¼àÌıµÄ¶Ë¿ÚºÅ     
+	public static final int PORT = 8866;//ç›‘å¬çš„ç«¯å£å·     
 	
 	private static List<Player> players;
 	private static List<Poker> allPoker;
@@ -30,7 +30,7 @@ public class Main {
         try {
             allPoker=new ArrayList<>();
             players= new ArrayList<>();
-            setPoker();
+            setPoker();//åˆå§‹åŒ–ç‰Œå¯¹è±¡
             Main server = new Main();
             server.init();
         }catch (Exception ex) {
@@ -42,37 +42,38 @@ public class Main {
 	public void init() {    
         try {    
             @SuppressWarnings("resource")
-			ServerSocket serverSocket = new ServerSocket(PORT,3,InetAddress.getByName("192.168.0.38"));    
+			ServerSocket serverSocket = new ServerSocket(PORT,3,InetAddress.getByName("192.168.0.111"));
             while (true) {    
-                // Ò»µ©ÓĞ¶ÂÈû, Ôò±íÊ¾·şÎñÆ÷Óë¿Í»§¶Ë»ñµÃÁËÁ¬½Ó    
-                Socket client = serverSocket.accept();    
-                // ´¦ÀíÕâ´ÎÁ¬½Ó    
-                new HandlerThread(client);    
+                // ä¸€æ—¦æœ‰å µå¡, åˆ™è¡¨ç¤ºæœåŠ¡å™¨ä¸å®¢æˆ·ç«¯è·å¾—äº†è¿æ¥
+                Socket client = serverSocket.accept();
+                // å¤„ç†è¿™æ¬¡è¿æ¥
+                new HandlerThread(client);
             }    
         } catch (Exception e) {    
-            System.out.println("·şÎñÆ÷Òì³£: " + e.getMessage());    
+            System.out.println("æœåŠ¡å™¨å¼‚å¸¸: " + e.getMessage());
+            e.printStackTrace();
         }    
     }    
     
 	   private class HandlerThread implements Runnable {    
 	        private Socket socket;    
-	        public HandlerThread(Socket client) {    
+	        public HandlerThread(Socket client) {
 	            socket = client;
 	            Player player=new Player();
 	            player.setSocket(socket);
 	            players.add(player);
-	            new Thread(this).start();    
-	        }    
+	            new Thread(this,player.getName()+"çº¿ç¨‹").start();
+	        }
 	    
 	        public void run() {    
 	            try {    
 	            	DataInputStream input = new DataInputStream(socket.getInputStream());   
 	                while(true){
 	                	String clientInputStr = (String) input.readUTF();
-		                // ´¦Àí¿Í»§¶ËÊı¾İ    
-		                System.out.println("¿Í»§¶Ë·¢¹ıÀ´µÄÄÚÈİ:" + clientInputStr);
+		                // å¤„ç†å®¢æˆ·ç«¯æ•°æ®    
+		                System.out.println("å®¢æˆ·ç«¯å‘è¿‡æ¥çš„å†…å®¹:" + clientInputStr);
 		                if(flag==-1){
-		                	sendMsg(clientInputStr);//Èº·¢
+		                	sendMsg(clientInputStr);//ç¾¤å‘
 		                }
 						if(flag==0){
 							for(int i=0;i<players.size();i++){
@@ -84,7 +85,7 @@ public class Main {
 			                		player.setName(clientInputStr);
 			                	}
 			                }
-							sendMsg(players.size()+"");//Èº·¢
+							sendMsg(players.size()+"");//ç¾¤å‘
 							
 							if(players.size()==3){
 								randomPoker();
@@ -102,17 +103,17 @@ public class Main {
 		            		}
 		            	}
 	            	}catch(Exception ee){
-	            		System.out.println("²»×ö´¦Àí");
+	            		System.out.println("ä¸åšå¤„ç†");
 	            	}
 	            	
-	                System.out.println("·şÎñÆ÷ run Òì³£: " + e.getMessage());    
+	                System.out.println("æœåŠ¡å™¨ run å¼‚å¸¸: " + e.getMessage());    
 	            } finally {    
 	                if (socket != null) {    
 	                    try {    
 	                        socket.close();    
 	                    } catch (Exception e) {    
 	                        socket = null;    
-	                        System.out.println("·şÎñ¶Ë finally Òì³£:" + e.getMessage());    
+	                        System.out.println("æœåŠ¡ç«¯ finally å¼‚å¸¸:" + e.getMessage());    
 	                    }    
 	                }    
 	            }   
@@ -155,10 +156,10 @@ public class Main {
 	public static void randomPoker(){
 		Random random=new Random();
 		List<Poker> all=new ArrayList<>();
-		all=allPoker;//allPokerÁô×Å±¸ÓÃ
-		List<Poker> list1=new ArrayList<>();//µÚÒ»¸öÈËµÄÅÆ
-		List<Poker> list2=new ArrayList<>();//µÚ¶ş¸öÈËµÄÅÆ
-		List<Poker> list3=new ArrayList<>();//µÚÈı¸öÈËµÄÅÆ
+		all=allPoker;//allPokerç•™ç€å¤‡ç”¨
+		List<Poker> list1=new ArrayList<>();//ç¬¬ä¸€ä¸ªäººçš„ç‰Œ
+		List<Poker> list2=new ArrayList<>();//ç¬¬äºŒä¸ªäººçš„ç‰Œ
+		List<Poker> list3=new ArrayList<>();//ç¬¬ä¸‰ä¸ªäººçš„ç‰Œ
 		int pokers=54;
 		for(int i=0;i<17;i++){
 			int r=random.nextInt(pokers);
@@ -176,14 +177,14 @@ public class Main {
 			list3.add(all.get(i));
 		}
 		
-		//¿ªÊ¼Ëæ»ú·¢¸øÈı¸öÈË
+		//å¼€å§‹éšæœºå‘ç»™ä¸‰ä¸ªäºº
 		int r = random.nextInt(9);
 		Player p1=players.get(0);
 		Player p2=players.get(1);
 		Player p3=players.get(2);
 		if (r >= 0 && r <= 2) {
 			p1.setPokers(list1);
-			p1.setId(1);//0-µØÖ÷ 1 2-Å©Ãñ
+			p1.setId(1);//0-åœ°ä¸» 1 2-å†œæ°‘
 			r = random.nextInt(9)+1;
 			if(r%2==0){
 				p2.setPokers(list2);

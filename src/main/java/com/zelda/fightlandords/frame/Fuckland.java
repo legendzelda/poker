@@ -26,11 +26,11 @@ public class Fuckland extends MyFrame {
 		fuckland = new Fuckland();
 		fuckland.setLayout(null);
 		fuckland.setSize(250, 200);
-		fuckland.setLocationRelativeTo(null);// ÉèÖÃ¾ÓÖĞ£¬Òª·ÅÔÚÉèÖÃ´°¿Ú´óĞ¡Ö®ºó
+		fuckland.setLocationRelativeTo(null);// è®¾ç½®å±…ä¸­ï¼Œè¦æ”¾åœ¨è®¾ç½®çª—å£å¤§å°ä¹‹å
 		
-		Font font=new Font("Î¢ÈíÑÅºÚ", 1, 13) ;
+		Font font=new Font("å¾®è½¯é›…é»‘", 1, 13) ;
 		
-		JLabel jLabel=new JLabel("ÇëÊäÈëĞÕÃû:");
+		JLabel jLabel=new JLabel("è¯·è¾“å…¥å§“å:");
 		jLabel.setFont(font);
 		jLabel.setBounds(10, 20, 70, 20);
 		
@@ -38,7 +38,7 @@ public class Fuckland extends MyFrame {
 		jTextField.setFont(font);
 		jTextField.setBounds(82, 20, 150, 20);
 		
-		JLabel jLabel2=new JLabel("µ±Ç°ÈËÊı:");
+		JLabel jLabel2=new JLabel("å½“å‰äººæ•°:");
 		jLabel2.setFont(font);
 		jLabel2.setBounds(10, 60, 60, 20);
 		
@@ -46,11 +46,11 @@ public class Fuckland extends MyFrame {
 		peoples.setFont(font);
 		peoples.setBounds(72, 60, 10, 20);
 		
-		JLabel jLabel3=new JLabel("(µ±ÈËÊıµ½´ï3Ê±,ÓÎÏ·¿ªÊ¼)");
+		JLabel jLabel3=new JLabel("(å½“äººæ•°åˆ°è¾¾3æ—¶,æ¸¸æˆå¼€å§‹)");
 		jLabel3.setFont(font);
 		jLabel3.setBounds(10, 80, 180, 20);
 		
-		jButton=new JButton("×¼     ±¸");
+		jButton=new JButton("å‡†     å¤‡");
 		jButton.setBounds(10, 130, 225, 30);
 		jButton.setFont(font);
 		
@@ -64,7 +64,7 @@ public class Fuckland extends MyFrame {
 						
 					}
 				}else{
-					JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'>ÇëÊäÈëĞÕÃû</font></h2></html>"), "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE); 
+					JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'>è¯·è¾“å…¥å§“å</font></h2></html>"), "æç¤º", JOptionPane.INFORMATION_MESSAGE); 
 				}
 			}
 		});

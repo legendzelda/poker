@@ -26,7 +26,7 @@ public class SendMes extends Thread {
 				Thread.sleep(100);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "´íÎó", JOptionPane.ERROR_MESSAGE); 
+			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "é”™è¯¯", JOptionPane.ERROR_MESSAGE); 
 		}finally{
 			try {
 				objOut.close();

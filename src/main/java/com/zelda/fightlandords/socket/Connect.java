@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 
 
 public class Connect {
-	public static final String IP_ADDR = "192.168.0.38";// ·şÎñÆ÷µØÖ·
-	public static final int PORT = 8866;// ·şÎñÆ÷¶Ë¿ÚºÅ
+	public static final String IP_ADDR = "192.168.0.111";// æœåŠ¡å™¨åœ°å€
+	public static final int PORT = 8866;// æœåŠ¡å™¨ç«¯å£å·
 
 	private static Socket socket;
 
@@ -20,16 +20,19 @@ public class Connect {
 		try {
 			socket = new Socket(IP_ADDR, PORT);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "´íÎó", JOptionPane.ERROR_MESSAGE); 
+			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "é”™è¯¯", JOptionPane.ERROR_MESSAGE); 
 		}
-		new ReadMes(socket).start();
+		ReadMes readThread = new ReadMes(socket);
+		readThread.setName("readThread");
+		readThread.start();//å¼€å¯è¯»è¿›ç¨‹
 		
 		sendMes=new SendMes(socket);
+		sendMes.setName("sendThread");
 		sendMes.setMsg(Fuckland.jTextField.getText().trim());
-		sendMes.start();
+		sendMes.start();//å¼€å¯å†™è¿›ç¨‹,æ˜¾ç¤ºåˆ°çª—å£
 		
 		
-        System.out.println("Á¬½Ó³É¹¦");
+        System.out.println("è¿æ¥æˆåŠŸ");
 		return true;
 	}
 }

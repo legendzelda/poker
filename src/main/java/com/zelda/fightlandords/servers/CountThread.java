@@ -22,7 +22,7 @@ public class CountThread extends Thread{
         stopRequested = false;
 		while(daoJiShi>=0&&!stopRequested){
 			if(daoJiShi==0&& MainFrame.out.isEnabled()){
-				//²»³ö
+				//ä¸å‡º
 				Connect.sendMes.setMsg(JSON.toJSONString(new Msg(MainFrame.myId,null)));
 			}
 			naoZhong.setText(daoJiShi+"");
