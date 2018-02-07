@@ -33,9 +33,9 @@ public class ReadMes extends Thread {
 			while (true) {
 				String s = (String) objInput.readUTF();
 				if(s!=null&&s.length()>0){
-					List<Player> players=new ArrayList<Player>();//ÓÎÏ·¿ªÊ¼»ñÈ¡µÄÍæ¼Ò
-					List<Poker> pokers=new ArrayList<Poker>();//³öµÄÅÆ
-					int who=-1;//Ë­³öµÄÅÆ
+					List<Player> players=new ArrayList<Player>();//æ¸¸æˆå¼€å§‹è·å–çš„ç©å®¶
+					List<Poker> pokers=new ArrayList<Poker>();//å‡ºçš„ç‰Œ
+					int who=-1;//è°å‡ºçš„ç‰Œ
 					try{
 						JSONArray jsonArray=JSONArray.parseArray(s);
 						for(int i=0;i<jsonArray.size();i++){
@@ -60,7 +60,7 @@ public class ReadMes extends Thread {
 							
 						}
 					}catch(Exception e){
-						//²»ÊÇÍæ¼ÒÁĞ±í
+						//ä¸æ˜¯ç©å®¶åˆ—è¡¨
 						try{
 							JSONObject j=JSONObject.parseObject(s);
 							who=j.getInteger("id");
@@ -70,21 +70,21 @@ public class ReadMes extends Thread {
 							
 							if(who==888&&ja==null){
 								if(MainFrame.myId==0){
-									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>Ê§     °Ü</font></h1></html>"), "ÓÎÏ·½áÊø", JOptionPane.INFORMATION_MESSAGE); 									
+									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>å¤±     è´¥</font></h1></html>"), "æ¸¸æˆç»“æŸ", JOptionPane.INFORMATION_MESSAGE); 									
 								}else{
-									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>Ê¤     Àû</font></h1></html>"), "ÓÎÏ·½áÊø", JOptionPane.INFORMATION_MESSAGE); 									
+									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>èƒœ     åˆ©</font></h1></html>"), "æ¸¸æˆç»“æŸ", JOptionPane.INFORMATION_MESSAGE); 									
 								}
 							}else if(who==999&&ja==null){
 								if(MainFrame.myId==0){
-									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>Ê¤     Àû</font></h1></html>"), "ÓÎÏ·½áÊø", JOptionPane.INFORMATION_MESSAGE); 									
+									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>èƒœ     åˆ©</font></h1></html>"), "æ¸¸æˆç»“æŸ", JOptionPane.INFORMATION_MESSAGE); 									
 								}else{
-									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>Ê§     °Ü</font></h1></html>"), "ÓÎÏ·½áÊø", JOptionPane.INFORMATION_MESSAGE); 									
+									JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>å¤±     è´¥</font></h1></html>"), "æ¸¸æˆç»“æŸ", JOptionPane.INFORMATION_MESSAGE); 									
 								}
 							}
 							if(who>=0&&ja==null){
-								// ÉÏ¼Ò²»Òª
+								// ä¸Šå®¶ä¸è¦
 								if(who==MainFrame.myId){
-									//×Ô¼º²»ÒªµÄ
+									//è‡ªå·±ä¸è¦çš„
 									CanOutPoker.setCannotOut(MainFrame.out,MainFrame.pass);
 									CanOutPoker.setCountShow(1, MainFrame.naoZhong);
 									MainFrame.showOutPokerPanelRight.removeAll();
@@ -109,11 +109,11 @@ public class ReadMes extends Thread {
 								pokers.add(p);
 							}
 							if(who>=0&&pokers!=null&&pokers.size()>0){
-								//¿ªÊ¼´¦Àí ½ÓÊÕµ½µÄÅÆ
+								//å¼€å§‹å¤„ç† æ¥æ”¶åˆ°çš„ç‰Œ
 								if(who==MainFrame.myId){
-									//×Ô¼º´ò³öÈ¥µÄÅÆ
-									MainFrame.showOutPoker();//ÏÔÊ¾´ò³öÈ¥µÄÅÆ  ´ÓÅÆ¶ÑÇå³ı
-									//ÉèÖÃ²»ÔÊĞí³öÅÆ
+									//è‡ªå·±æ‰“å‡ºå»çš„ç‰Œ
+									MainFrame.showOutPoker();//æ˜¾ç¤ºæ‰“å‡ºå»çš„ç‰Œ  ä»ç‰Œå †æ¸…é™¤
+									//è®¾ç½®ä¸å…è®¸å‡ºç‰Œ
 									CanOutPoker.setCannotOut(MainFrame.out,MainFrame.pass);
 									CanOutPoker.setCountShow(1, MainFrame.naoZhong);
 									MainFrame.showOutPokerPanelRight.removeAll();
@@ -125,8 +125,8 @@ public class ReadMes extends Thread {
 								}else{
 									MainFrame.saveMsg(who, pokers);
 								}
-								//Âèµ° 5Ã«Ç®µÄ¶¼²»ÈÃ¼Ó
-//								//Èç¹ûÊÇÕ¨µ¯ ¼Ó5Ã«Ç®µÄÌØĞ§
+								//å¦ˆè›‹ 5æ¯›é’±çš„éƒ½ä¸è®©åŠ 
+//								//å¦‚æœæ˜¯ç‚¸å¼¹ åŠ 5æ¯›é’±çš„ç‰¹æ•ˆ
 //								if(pokers.size()==2&&IsTruePoker.isWangZha(pokers)){
 //									new BoomTheard().start();
 //								}else if(pokers.size()==4){
@@ -142,9 +142,9 @@ public class ReadMes extends Thread {
 							continue;
 						}
 					}
-					//ÊÇÍæ¼ÒÁĞ±í
+					//æ˜¯ç©å®¶åˆ—è¡¨
 					if(players.size()==3){
-						//¿ª¾Ö
+						//å¼€å±€
 						for(int i=0;i<players.size();i++){
 							if(players.get(i).getName().equals(Fuckland.jTextField.getText().trim())){
 								MainFrame.startMain(players,i);
@@ -158,7 +158,7 @@ public class ReadMes extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 			if(e.getMessage()!=null)
-				JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "´íÎó", JOptionPane.ERROR_MESSAGE); 				
+				JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "é”™è¯¯", JOptionPane.ERROR_MESSAGE); 				
 			
 		} finally {
 			try {
