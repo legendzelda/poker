@@ -27,8 +27,8 @@ public class CanOutPoker {
 	}
 	
 	/**
-	 * ÉèÖÃµ¹¼ÆÊ±
-	 * @param who ÊÇË­µÄµ¹¼ÆÊ±  0 ×Ô¼º 1ÓÒ±ß 2×ó±ß
+	 * è®¾ç½®å€’è®¡æ—¶
+	 * @param who æ˜¯è°çš„å€’è®¡æ—¶  0 è‡ªå·± 1å³è¾¹ 2å·¦è¾¹
 	 * @param jLabel 
 	 */
 	public static void setCountShow(int who,JLabel jLabel){
@@ -44,8 +44,9 @@ public class CanOutPoker {
 			jLabel.setBounds(70, 200, 50, 50);
 		}
 		//jLabel.setVisible(true);
-		// µ¹¼ÆÊ±
+		// å€’è®¡æ—¶
 		CountThread countThread=new CountThread(jLabel,30);
+		countThread.setName("countThread");
 		list.add(countThread);
 		countThread.start();
 	}

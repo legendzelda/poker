@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class Main {
 	public static int flag=0;
-	public static final int PORT = 8866;//监听的端口号     
+	public static final int PORT = 8866;//监听的端口号
 	
 	private static List<Player> players;
 	private static List<Poker> allPoker;
@@ -30,7 +30,7 @@ public class Main {
         try {
             allPoker=new ArrayList<>();
             players= new ArrayList<>();
-            setPoker();
+            setPoker();//初始化牌对象
             Main server = new Main();
             server.init();
         }catch (Exception ex) {
@@ -43,33 +43,34 @@ public class Main {
         try {    
             @SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(PORT,3,InetAddress.getByName("172.16.5.102"));
-            while (true) {    
-                // 一旦有堵塞, 则表示服务器与客户端获得了连接    
-                Socket client = serverSocket.accept();    
-                // 处理这次连接    
-                new HandlerThread(client);    
+            while (true) {
+                // 一旦有堵塞, 则表示服务器与客户端获得了连接
+                Socket client = serverSocket.accept();
+                // 处理这次连接
+                new HandlerThread(client);
             }    
         } catch (Exception e) {    
-            System.out.println("服务器异常: " + e.getMessage());    
+            System.out.println("服务器异常: " + e.getMessage());
+            e.printStackTrace();
         }    
     }    
     
 	   private class HandlerThread implements Runnable {    
 	        private Socket socket;    
-	        public HandlerThread(Socket client) {    
+	        public HandlerThread(Socket client) {
 	            socket = client;
 	            Player player=new Player();
 	            player.setSocket(socket);
 	            players.add(player);
-	            new Thread(this).start();    
-	        }    
+	            new Thread(this,player.getName()+"线程").start();
+	        }
 	    
 	        public void run() {    
 	            try {    
 	            	DataInputStream input = new DataInputStream(socket.getInputStream());   
 	                while(true){
 	                	String clientInputStr = (String) input.readUTF();
-		                // 处理客户端数据    
+		                // 处理客户端数据
 		                System.out.println("客户端发过来的内容:" + clientInputStr);
 		                if(flag==-1){
 							//群发
@@ -106,14 +107,14 @@ public class Main {
 	            		System.out.println("不做处理");
 	            	}
 	            	
-	                System.out.println("服务器 run 异常: " + e.getMessage());    
+	                System.out.println("服务器 run 异常: " + e.getMessage());
 	            } finally {    
 	                if (socket != null) {    
 	                    try {    
 	                        socket.close();    
 	                    } catch (Exception e) {    
 	                        socket = null;    
-	                        System.out.println("服务端 finally 异常:" + e.getMessage());    
+	                        System.out.println("服务端 finally 异常:" + e.getMessage());
 	                    }    
 	                }    
 	            }   

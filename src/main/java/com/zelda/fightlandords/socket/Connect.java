@@ -22,17 +22,20 @@ public class Connect {
 	public static boolean connect(){
 		try {
 			socket = new Socket(IP_ADDR, PORT);
-			new ReadMes(socket).start();
-
-			sendMes=new SendMes(socket);
-			sendMes.setMsg(Fuckland.jTextField.getText().trim());
-			sendMes.start();
-			loger.info("连接成功");
-			return true;
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "错误", JOptionPane.ERROR_MESSAGE); 
-
+			JOptionPane.showMessageDialog(null, new JLabel("<html><h1><font color='red'>"+e.getMessage()+"</font></h1></html>"), "错误", JOptionPane.ERROR_MESSAGE);
 		}
-		return false;
+		ReadMes readThread = new ReadMes(socket);
+		readThread.setName("readThread");
+		readThread.start();//开启读进程
+		
+		sendMes=new SendMes(socket);
+		sendMes.setName("sendThread");
+		sendMes.setMsg(Fuckland.jTextField.getText().trim());
+		sendMes.start();//开启写进程,显示到窗口
+		
+		
+        System.out.println("连接成功");
+		return true;
 	}
 }

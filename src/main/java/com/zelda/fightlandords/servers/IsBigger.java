@@ -7,10 +7,10 @@ import java.util.List;
 
 public class IsBigger {
 	public static boolean isBigger(List<Poker> leftList,List<Poker> rightList,List<Poker> choose){
-		//Èç¹ûÉÏ¼Ò²»Òª »òÕßµÚÒ»°Ñ³ö  list=null
+		//å¦‚æœä¸Šå®¶ä¸è¦ æˆ–è€…ç¬¬ä¸€æŠŠå‡º  list=null
 		if(leftList==null||leftList.size()==0){
 			if(rightList==null||rightList.size()==0){
-				//Á½¼Ò¶¼²»Òª
+				//ä¸¤å®¶éƒ½ä¸è¦
 				return true;
 			}else{
 				if(isRealBigger(rightList, choose)){
@@ -27,76 +27,76 @@ public class IsBigger {
 		
 	}
 	public static boolean isRealBigger(List<Poker> leftList,List<Poker> choose){
-		// Ê×ÏÈÅĞ¶ÏÅÆĞÍÊÇ²»ÊÇÒ»Ñù
+		// é¦–å…ˆåˆ¤æ–­ç‰Œå‹æ˜¯ä¸æ˜¯ä¸€æ ·
 		String paiXing = IsTruePoker.isTruePoker(leftList);
 		if (paiXing.equals(IsTruePoker.isTruePoker(choose))) {
-			// ¸ù¾İÅÆĞÍÀ´ÅĞ¶Ï´óĞ¡
+			// æ ¹æ®ç‰Œå‹æ¥åˆ¤æ–­å¤§å°
 			if (IsTruePoker.DANZHANG.equals(paiXing)) {
-				// µ¥ÕÅ
+				// å•å¼ 
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.WANGZHA.equals(paiXing)) {
-				// ÍõÕ¨
-				// ¿ª¹ÒÁË
+				// ç‹ç‚¸
+				// å¼€æŒ‚äº†
 			} else if (IsTruePoker.DUIZI.equals(paiXing)) {
-				// ¶Ô×Ó
+				// å¯¹å­
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.SANGETOU.equals(paiXing)) {
-				// ÈıÕÅ
+				// ä¸‰å¼ 
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.SANDAIYI.equals(paiXing)) {
-				// Èı´øÒ»
+				// ä¸‰å¸¦ä¸€
 				if (isBiggerSan(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.SANDAIYIDUI.equals(paiXing)) {
-				// Èı´øÒ»¶Ô
+				// ä¸‰å¸¦ä¸€å¯¹
 				if (isBiggerSan(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.ZHADAN.equals(paiXing)) {
-				// Õ¨µ¯
+				// ç‚¸å¼¹
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.SHUNZI.equals(paiXing)) {
-				// Ë³×Ó
+				// é¡ºå­
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.LIANDUI.equals(paiXing)) {
-				// Á¬¶Ô
+				// è¿å¯¹
 				if (isBiggerLast(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} else if (IsTruePoker.SHUANGFEI.equals(paiXing)) {
-				// Ë«·É
+				// åŒé£
 				if (isBiggerSan(leftList, choose)) {
 					return true;
 				}
 				return false;
 			} 
 		}else if(choose.size()==2){
-			//ÅĞ¶ÏÊÇ²»ÊÇÍõÕ¨
+			//åˆ¤æ–­æ˜¯ä¸æ˜¯ç‹ç‚¸
 			if(IsTruePoker.isWangZha(choose)){
 				return true;
 			}
 			return false;
 		} else if(choose.size()==4){
-			//ÅĞ¶ÏÊÇ²»ÊÇÕ¨µ¯
+			//åˆ¤æ–­æ˜¯ä¸æ˜¯ç‚¸å¼¹
 			if(IsTruePoker.isSame(choose, 4)){
 				return true;
 			}

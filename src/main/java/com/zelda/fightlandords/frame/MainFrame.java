@@ -95,8 +95,10 @@ public class MainFrame extends MyFrame {
 		setMyPokerView(mainFrame,players.get(my).getPokers());//扑克列表
 		
 		setAllInfo(players,my);//填充玩家信息
-		
-		new ListeningPaiShu().start();
+
+		ListeningPaiShu listeningPaiShu = new ListeningPaiShu();
+		listeningPaiShu.setName("牌数线程");
+		listeningPaiShu.start();
 		JLabel bg=new JLabel();
 		bg.setIcon(new ImageIcon(getResource("image/mainBg.png")));
 		bg.setBounds(0, 0, 800, 600);

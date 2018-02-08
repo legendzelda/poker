@@ -12,6 +12,6 @@ public class MyFrame extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		this.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		this.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 20));
 	}
 }
