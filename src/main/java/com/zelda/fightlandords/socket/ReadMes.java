@@ -38,7 +38,7 @@ public class ReadMes extends Thread {
 					int who=-1;//谁出的牌
 					try{
 						JSONArray jsonArray=JSONArray.parseArray(s);
-						for(int i=0;i<jsonArray.size();i++){
+						for(int i=0;i<jsonArray.size();i++){//三名玩家
 							JSONObject jsonObject= (JSONObject) jsonArray.get(i);
 							JSONArray array=jsonObject.getJSONArray("pokers");
 							List<Poker> list=new ArrayList<Poker>();
@@ -46,7 +46,7 @@ public class ReadMes extends Thread {
 							boolean island=jsonObject.getBoolean("island");
 							String pname=jsonObject.getString("name");
 							Player player=new Player(pid, pname, null, island);
-							for(int j=0;j<array.size();j++){
+							for(int j=0;j<array.size();j++){//每名玩家的牌数
 								JSONObject jsonObject1= (JSONObject) array.get(j);
 								int id=jsonObject1.getInteger("id");
 								String name=jsonObject1.getString("name");

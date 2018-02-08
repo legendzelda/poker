@@ -6,10 +6,13 @@ import java.util.List;
 import javax.swing.JLabel;
 
 
-
+/**
+ * 可以出的牌
+ */
 public class CanOutPoker {
 	
 	public static List<CountThread> list=new ArrayList<CountThread>();
+	
 	public static void setCanOut(JLabel out,List<JLabel> choose,JLabel pass){
 		out.addMouseListener(new OutMouseEvent(out, choose));
 		out.setEnabled(true);

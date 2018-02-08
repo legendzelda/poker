@@ -21,6 +21,7 @@ public class SendMes extends Thread {
 			while(true){
 				if(msg!=null&&msg.length()>0){
 					objOut.writeUTF(msg);
+					//将message写出去之后 清空
 					msg=null;
 				}
 				Thread.sleep(100);

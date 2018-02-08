@@ -7,7 +7,9 @@ import com.zelda.fightlandords.domain.Msg;
 import com.zelda.fightlandords.frame.MainFrame;
 import com.zelda.fightlandords.socket.Connect;
 
-
+/**
+ * 倒计时线程
+ */
 public class CountThread extends Thread{
 	
 	private volatile boolean stopRequested;
@@ -18,6 +20,7 @@ public class CountThread extends Thread{
 	
 	
 	public void run() {
+		//这一步是作甚?
 		runThread = Thread.currentThread();
         stopRequested = false;
 		while(daoJiShi>=0&&!stopRequested){

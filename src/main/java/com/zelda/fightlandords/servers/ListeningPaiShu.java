@@ -5,6 +5,9 @@ import com.zelda.fightlandords.domain.Msg;
 import com.zelda.fightlandords.frame.MainFrame;
 import com.zelda.fightlandords.socket.Connect;
 
+/**
+ * 鐩戞帶鍓╀綑鐗屾暟绾跨▼
+ */
 public class ListeningPaiShu extends Thread{
 	
 	public void run() {
@@ -20,10 +23,10 @@ public class ListeningPaiShu extends Thread{
 			}
 		}
 		if(MainFrame.myId==0){
-			//地主胜利
+			//鍦颁富鑳滃埄
 			Connect.sendMes.setMsg(JSON.toJSONString(new Msg(999,null)));
 		}else{
-			//农民胜利
+			//鍐滄皯鑳滃埄
 			Connect.sendMes.setMsg(JSON.toJSONString(new Msg(888,null)));
 		}
 		

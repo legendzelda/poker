@@ -22,6 +22,11 @@ public class Fuckland extends MyFrame {
 	public static JTextField jTextField;
 	public static JLabel peoples;
 	public static Fuckland fuckland;
+	
+	/**
+	 * 客户端
+	 * @param args main参数
+	 */
 	public static void main(String[] args) {
 		fuckland = new Fuckland();
 		fuckland.setLayout(null);

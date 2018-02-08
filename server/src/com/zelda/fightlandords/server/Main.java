@@ -89,7 +89,7 @@ public class Main {
 							sendMsg(players.size()+"");//群发
 							
 							if(players.size()==3){
-								randomPoker();
+								randomPoker();//游戏开始,随机发牌
 								flag=-1;
 							}
 						}
